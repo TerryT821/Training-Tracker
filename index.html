@@ -24,7 +24,7 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-const TRAINING_START = new Date("2026-06-06");
+const TRAINING_START = new Date("2026-07-21");
 const RACE_DATE = new Date("2026-11-26");
 
 function generateScheduledDays() {
@@ -51,7 +51,7 @@ function today() { return toDateStr(new Date()); }
 const feasibilityData = {
   analysis: [
     { label: "Target", value: "Sub-30:00 = 6:19/mile pace over 4.737 miles" },
-    { label: "Race Date", value: "Nov 26, 2026 — 25 weeks from June 6 start" },
+    { label: "Race Date", value: "Nov 26, 2026 — 18 weeks from July 21 start" },
     { label: "Athletic Base", value: "3:27 marathon (2014) + collegiate rowing = high VO\u2082 ceiling. These don't disappear." },
     { label: "The Gap", value: "4 years deconditioned. Connective tissue adapts slower than lungs. That gap is the whole plan." },
     { label: "2026 Realistic", value: "31:00\u201333:00 is the honest target. Sub-30 is possible with consistency + zero injuries." },
@@ -81,7 +81,7 @@ const rowTargets = [
 ];
 
 const phases = [
-  { id:1, name:"Phase 1", subtitle:"Foundation", weeks:"Weeks 1\u20136 (Jun 6 \u2013 Jul 18)", color:"#4ade80",
+  { id:1, name:"Phase 1", subtitle:"Foundation", weeks:"Weeks 1\u20133 (Jul 21 \u2013 Aug 10)", color:"#4ade80",
     focus:"Rebuild aerobic engine on the rower. Zero running \u2014 protect connective tissue. Begin tibialis raises Day 1. Build the 5am habit.",
     weeklyHours:"3\u20134 hrs",
     days:[
@@ -95,7 +95,7 @@ const phases = [
     ],
     flexibilityNotes:["Tibialis raises 3\u002525 every Tue/Thu \u2014 start this Day 1, not Phase 2","Morning: 5 min hip flexor + calf stretch before coffee","Evening: 5 min legs-up-the-wall after kids\u2019 bedtime","Foam roll: glute medius (above knee) \u2014 not directly on the lateral IT band track"],
   },
-  { id:2, name:"Phase 2", subtitle:"Run Introduction", weeks:"Weeks 7\u201312 (Jul 19 \u2013 Aug 29)", color:"#facc15",
+  { id:2, name:"Phase 2", subtitle:"Run Introduction", weeks:"Weeks 4\u20137 (Aug 11 \u2013 Sep 7)", color:"#facc15",
     focus:"Begin walk-to-run intervals. Soft surfaces only (trail, track, grass) for first 4 weeks \u2014 no concrete. Hip & calf prehab non-negotiable.",
     weeklyHours:"4\u20135 hrs",
     days:[
@@ -109,7 +109,7 @@ const phases = [
     ],
     flexibilityNotes:["Tibialis raises continue every Tue/Thu \u2014 3\u002525, daily if shin tightness appears","Pre-run: leg swings, hip circles, ankle rolls (3 min)","Post-run always: calf-to-Achilles stretch, IT band stretch, quad/hip flexor","Foam roll: glute medius above knee, calves \u2014 NOT the lateral knee track"],
   },
-  { id:3, name:"Phase 3", subtitle:"Build", weeks:"Weeks 13\u201318 (Aug 30 \u2013 Oct 10)", color:"#f97316",
+  { id:3, name:"Phase 3", subtitle:"Build", weeks:"Weeks 8\u201312 (Sep 8 \u2013 Oct 12)", color:"#f97316",
     focus:"Running becomes primary. Introduce pace work. Strength shifts to maintenance. Row for cross-training only. Road running permitted if shins are healthy.",
     weeklyHours:"5\u20136 hrs",
     days:[
@@ -123,7 +123,7 @@ const phases = [
     ],
     flexibilityNotes:["Post-long run: 15 min full-body stretch \u2014 mandatory, not optional","Foam roll: glute medius + calves after every run","Tibialis raises continue 2\u00d7/week as maintenance","Consider monthly sports massage if budget allows"],
   },
-  { id:4, name:"Phase 4", subtitle:"Race-Specific", weeks:"Weeks 19\u201324 (Oct 11 \u2013 Nov 21)", color:"#ef4444",
+  { id:4, name:"Phase 4", subtitle:"Race-Specific", weeks:"Weeks 13\u201318 (Oct 13 \u2013 Nov 21)", color:"#ef4444",
     focus:"Sharpen at race pace. Simulate Highland Street. Taper intelligently from Week 22. Protect the body.",
     weeklyHours:"5 hrs \u2192 reducing",
     days:[
@@ -203,10 +203,10 @@ function getCurrentWorkout() {
   const dow = new Date().getDay();
   if (dow===0) return null;
   const pr = [
-    { phase:phases[0], start:new Date("2026-06-06"), end:new Date("2026-07-18") },
-    { phase:phases[1], start:new Date("2026-07-19"), end:new Date("2026-08-29") },
-    { phase:phases[2], start:new Date("2026-08-30"), end:new Date("2026-10-10") },
-    { phase:phases[3], start:new Date("2026-10-11"), end:new Date("2026-11-21") },
+    { phase:phases[0], start:new Date("2026-07-21"), end:new Date("2026-08-10") },
+    { phase:phases[1], start:new Date("2026-08-11"), end:new Date("2026-09-07") },
+    { phase:phases[2], start:new Date("2026-09-08"), end:new Date("2026-10-12") },
+    { phase:phases[3], start:new Date("2026-10-13"), end:new Date("2026-11-21") },
   ];
   const now = new Date();
   const cur = pr.find(r => now>=r.start && now<=r.end);
@@ -295,7 +295,7 @@ function TodaySection({ log, onLog }) {
         </div>
       ) : (
         <div style={{ ...S.card, marginBottom:16 }}>
-          <div style={{ fontSize:14, color:"#888" }}>Training starts June 6, 2026. Check back then!</div>
+          <div style={{ fontSize:14, color:"#888" }}>Training starts July 21, 2026. Check back then!</div>
         </div>
       )}
       <div style={{ ...S.card, borderColor:"#2a2a2a" }}>
@@ -361,7 +361,7 @@ function HistorySection({ log, onLog }) {
       </div>
       <div style={{ ...S.card, marginBottom:20 }}>
         <div style={{ fontSize:12, color:"#888", fontFamily:"'DM Mono',monospace", marginBottom:14 }}>RECENT SESSIONS</div>
-        {recentDays.length===0 ? <div style={{ fontSize:13, color:"#555" }}>Training starts June 6, 2026.</div> : (
+        {recentDays.length===0 ? <div style={{ fontSize:13, color:"#555" }}>Training starts July 21, 2026.</div> : (
           <div style={{ display:"flex", flexWrap:"wrap", gap:6 }}>
             {recentDays.map(d => {
               const entry=log[d], isToday=d===todayStr, cfg=entry?SC[entry.status]:null;
@@ -408,7 +408,7 @@ function TrainingPlanSection() {
   const ph = phases[active];
   return (
     <section style={{ marginBottom:48 }}>
-      <h2 style={S.h2}><span style={{ color:"#4ade80" }}>03</span> 25-Week Training Plan</h2>
+      <h2 style={S.h2}><span style={{ color:"#4ade80" }}>03</span> 18-Week Training Plan</h2>
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:8 }}>
         {phases.map((p,i) => (
           <div key={i} onClick={()=>setActive(i)} style={{ ...S.card, borderColor:active===i?p.color+"88":"#2a2a2a", background:active===i?p.color+"0a":"#111", cursor:"pointer", transition:"all 0.2s" }}>
@@ -514,7 +514,7 @@ function FeasibilitySection() {
       </div>
       <div style={{ ...S.card, marginTop:16, borderColor:"#facc1533", background:"#facc1508" }}>
         <div style={{ fontSize:12, color:"#facc15", fontFamily:"'DM Mono',monospace", marginBottom:8 }}>\u26a1 THE MATH</div>
-        <div style={{ fontSize:14, color:"#c0c0c0", lineHeight:1.6 }}>Sub-30:00 over 4.737 miles = <strong style={{ color:"#fff" }}>6:19/mile pace</strong>. Your 3:27 marathon (2014) = 7:55/mile. You had the aerobic ceiling. Treat 2026 as the proof-of-concept year and 2027 as the guarantee. <strong style={{ color:"#fff" }}>Taking 2026 pressure off is the single best thing you can do for your shin and IT band health.</strong></div>
+        <div style={{ fontSize:14, color:"#c0c0c0", lineHeight:1.6 }}>Sub-30:00 over 4.737 miles = <strong style={{ color:"#fff" }}>6:19/mile pace</strong>. Your 3:27 marathon (2014) = 7:55/mile. You had the aerobic ceiling. 18 weeks is a compressed but executable timeline. Treat 2026 as the proof-of-concept year and 2027 as the guarantee. <strong style={{ color:"#fff" }}>Injury prevention discipline matters even more now \u2014 there is no buffer time to recover from a misstep.</strong></div>
       </div>
     </section>
   );
@@ -608,7 +608,7 @@ function App() {
       <div style={{ padding:"28px 28px 20px", borderBottom:"1px solid #1e1e1e", marginBottom:28 }}>
         <div style={{ fontSize:11, color:"#4ade80", fontFamily:"'DM Mono',monospace", letterSpacing:"0.15em", marginBottom:6 }}>MANCHESTER ROAD RACE \u2014 THANKSGIVING 2026</div>
         <h1 style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:38, fontWeight:800, color:"#ffffff", lineHeight:1, letterSpacing:"0.01em", marginBottom:4 }}>SUB-30 TRAINING PLAN</h1>
-        <div style={{ fontSize:13, color:"#666", marginBottom:16 }}>4.737 miles \u00b7 Nov 26, 2026 \u00b7 June 6 start \u00b7 25 Weeks</div>
+        <div style={{ fontSize:13, color:"#666", marginBottom:16 }}>4.737 miles \u00b7 Nov 26, 2026 \u00b7 July 21 start \u00b7 18 Weeks</div>
         <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
           {TABS.map(t => (
             <button key={t.id} onClick={()=>setTab(t.id)}
